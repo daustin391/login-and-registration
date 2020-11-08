@@ -12,12 +12,13 @@
 <body>
     {% block success %}
 
-    <h2>Registration</h2>
     <form action="register" method="POST">
         {% csrf_token %}
+        <h2>Registration</h2>
         <label for="first_name">First Name</label>
         <input type="text" name="first_name">
         <label for="last_name">Last Name</label>
+        <input type="text" name="last_name">
         <label for="email">Email</label>
         <input type="email" name="email">
         <label for="password">Password</label>
@@ -32,23 +33,15 @@
         {% endfor %}
 
     </ul>
-    <h2>Courses</h2>
-    <table>
-        <tr>
-            <th>Course Name</th>
-            <th>Description</th>
-            <th>Date Added</th>
-            <th>Actions</th>
-        </tr>
-        {% for course in all_courses %}
-        <tr>
-            <td>{{ course.name }}</td>
-            <td>{{ course.desc }}</td>
-            <td>{{ course.created_at|date:"M jS Y g:iA"  }}</td>
-            <td><a href="/courses/destroy/{{ course.id }}">remove</a></td>
-        </tr>
-        {% endfor %}
-    </table>
+    <form action="login" method="POST" id="login">
+        {% csrf_token %}
+        <h2>Login</h2>
+        <label for="email">Email</label>
+        <input type="email" name="email">
+        <label for="password">Password</label>
+        <input type="password" name="password">
+        <button type="submit">Log In</button>
+    </form>
 
     {% endblock %}
 </body>
