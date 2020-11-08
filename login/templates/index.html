@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Login & Registration{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    {% block success %}
+
+    <h2>Registration</h2>
+    <form action="register" method="POST">
+        {% csrf_token %}
+        <label for="first_name">First Name</label>
+        <input type="text" name="first_name">
+        <label for="last_name">Last Name</label>
+        <label for="email">Email</label>
+        <input type="email" name="email">
+        <label for="password">Password</label>
+        <input type="password" name="password">
+        <label for="confirm_pw">Confirm PW</label>
+        <input type="password" name="confirm_pw">
+        <button type="submit">Register</button>
+    </form>
+    <ul>
+        {% for msg in messages %}
+        <li>{{msg}}</li>
+        {% endfor %}
+
+    </ul>
+    <h2>Courses</h2>
+    <table>
+        <tr>
+            <th>Course Name</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for course in all_courses %}
+        <tr>
+            <td>{{ course.name }}</td>
+            <td>{{ course.desc }}</td>
+            <td>{{ course.created_at|date:"M jS Y g:iA"  }}</td>
+            <td><a href="/courses/destroy/{{ course.id }}">remove</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% endblock %}
+</body>
+
+</html>
