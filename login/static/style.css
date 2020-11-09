@@ -59,7 +59,6 @@ table {
 
 #course__button {
     display: block;
-    background-color: #bfff3c;
     color: #d62411;
     width: 70px;
     margin-left: auto;
@@ -67,6 +66,7 @@ table {
 }
 
 button {
+    background-color: #b7d9ee;
     padding: 2px 4px;
     box-shadow: 2px 2px #2c1923;
     cursor: pointer;
