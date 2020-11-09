@@ -8,6 +8,11 @@ def index(request):
     return render(request, "index.html")
 
 
+def success_redirect(request, user_id):
+    request.session["id"] = user_id
+    return redirect("/success")
+
+
 def register(request):
     if request.method == "POST":
         errors = User.objects.validate(request.POST)
@@ -23,6 +28,7 @@ def register(request):
                 email=request.POST["email"],
                 password=hashword,
             )
+            return success_redirect(request, User.objects.last().id)
     return redirect("/")
 
 
@@ -32,8 +38,13 @@ def login(request):
         if this_user and bcrypt.checkpw(
             request.POST["password"].encode(), this_user[0].password.encode()
         ):
-            print("success")
+            return success_redirect(request, this_user[0].id)
         else:
             messages.error(request, "Invalid login")
 
     return redirect("/")
+
+
+def success(request):
+    context = {"this_user": User.objects.get(id=request.session["id"])}
+    return render(request, "success.html", context)

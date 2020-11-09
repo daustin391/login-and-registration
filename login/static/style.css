@@ -12,6 +12,7 @@ body {
     margin: 0 auto;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 li { color: #ff2674; }
@@ -57,14 +58,6 @@ table {
     width: 100%;
 }
 
-#course__button {
-    display: block;
-    color: #d62411;
-    width: 70px;
-    margin-left: auto;
-    grid-column: 2;
-}
-
 button {
     background-color: #b7d9ee;
     padding: 2px 4px;
@@ -92,4 +85,4 @@ h2 {
     text-align: center;
 }
 
-[action='register'] { margin-right: 2rem; }
+/* [action='register'] { margin-right: 2rem; } */
