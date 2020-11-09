@@ -24,3 +24,16 @@ def register(request):
                 password=hashword,
             )
     return redirect("/")
+
+
+def login(request):
+    if request.method == "POST":
+        this_user = User.objects.filter(email=request.POST["email"])
+        if this_user and bcrypt.checkpw(
+            request.POST["password"].encode(), this_user[0].password.encode()
+        ):
+            print("success")
+        else:
+            messages.error(request, "Invalid login")
+
+    return redirect("/")

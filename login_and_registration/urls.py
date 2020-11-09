@@ -17,4 +17,8 @@ Including another URLconf
 from django.urls import path
 from login import views
 
-urlpatterns = [path("", views.index), path("register", views.register)]
+urlpatterns = [
+    path("", views.index),
+    path("register", views.register),
+    path("login", views.login),
+]
